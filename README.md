@@ -12,4 +12,4 @@ type `source .env` to export the enviroment variable
 
 1. jpeg
 2. tiktok upload
-
+3. make it so edits happen in the same folder

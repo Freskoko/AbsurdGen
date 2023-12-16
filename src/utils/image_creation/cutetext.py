@@ -13,11 +13,11 @@ def grab_cute_text():
         messages=[
             {
                 "role": "system",
-                "content": "You are a funny cat loving assisstant. You dont say 'did you know', you just provide what is asked of you",
+                "content": "You are a dark quote making assisstant. You dont say 'did you know', you just provide what is asked of you",
             },
             {
                 "role": "user",
-                "content": "Make up an absurd but convincing fact about evil cats. Only reply in one short line. DO NOT say 'did you know' ",
+                "content": "Create a crazy badass quote that talks about how cool you are. Only reply in one short line. DO NOT say 'did you know' ",
             },
         ],
     )

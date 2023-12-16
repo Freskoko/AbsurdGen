@@ -6,7 +6,12 @@ from loguru import logger
 
 def clear_folders():
     # Folders to be cleared
-    folders = ["src/received_imgs", "src/step1", "src/step2", "src/step3"]
+    folders = [
+        "src/images/received_imgs",
+        "src/images/step1",
+        "src/images/step2",
+        "src/images/step3",
+    ]
 
     for folder in folders:
         # For every .jpg and .png file in the folder

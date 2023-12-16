@@ -53,7 +53,7 @@ def add_txt_to_image(image_path: Path):
             stroke_fill="black",
         )
 
-    img.save(f"src/images/step1/{image_path.name}", quality=85)
+    img.save(f"src/images/step3/{image_path.name}", quality=85)
 
 
 def add_random_text(image_path: Path, text_func: callable):
@@ -84,7 +84,7 @@ def add_random_text(image_path: Path, text_func: callable):
                 stroke_fill="black",
             )
 
-    img.save(f"src/images/step2/{image_path.name}", quality=85)
+    img.save(f"src/images/step1/{image_path.name}", quality=85)
 
 
 def add_random_images(image_path: Path):
@@ -113,7 +113,7 @@ def add_random_images(image_path: Path):
         )
         img.paste(overlay, offset, overlay)
 
-    img.save(f"src/images/step3/{image_path.name}", quality=85)
+    img.save(f"src/images/step2/{image_path.name}", quality=85)
 
 
 if __name__ == "__main__":

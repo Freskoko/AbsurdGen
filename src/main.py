@@ -25,15 +25,17 @@ def image_creator(iterations: int):
 
     logger.info(f"Grabbed {iterations} images")
 
-    treat_files_in_dir(directory="src/images/received_imgs", func=add_txt_to_image)
-
     treat_files_in_dir(
-        directory="src/images/step1", func=add_random_text, text_func=grab_arabic_text
+        directory="src/images/received_imgs",
+        func=add_random_text,
+        text_func=grab_arabic_text,
     )
 
-    treat_files_in_dir(directory="src/images/step2", func=add_random_images)
+    treat_files_in_dir(directory="src/images/step1", func=add_random_images)
 
-    logger.success(f"Completed image process")
+    treat_files_in_dir(directory="src/images/step2", func=add_txt_to_image)
+
+    logger.success(f"Completed image processing")
 
 
 if __name__ == "__main__":

@@ -19,7 +19,7 @@ def grab_cute_img():
 
     response = client.images.generate(
         model="dall-e-2",
-        prompt="anm evil white siamese cat, scheming",
+        prompt="a skull with flames on a black background, really cool",
         size="1024x1024",
         quality="standard",
         # size="1024x1024",
