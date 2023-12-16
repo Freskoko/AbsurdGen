@@ -4,7 +4,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
-from utils.image_creation.cutetext import grab_arabic_text
+from utils.image_creation.cutetext import grab_arabic_text, grab_cute_text
 
 
 def grab_random_colour():
@@ -26,7 +26,8 @@ def grab_random_colour():
     )
 
 
-def add_txt_to_image(image_path: Path, text: str):
+def add_txt_to_image(image_path: Path):
+    text = grab_cute_text()
 
     # todo get colour random
     img = Image.open(str(image_path))
@@ -52,7 +53,7 @@ def add_txt_to_image(image_path: Path, text: str):
             stroke_fill="black",
         )
 
-    img.save(f"src/finished_imgs/{image_path.name}", quality=85)
+    img.save(f"src/step1/{image_path.name}", quality=85)
 
 
 def add_random_text(image_path: Path, text_func: callable):
@@ -86,7 +87,36 @@ def add_random_text(image_path: Path, text_func: callable):
                 stroke_fill="black",
             )
 
-    img.save(f"src/arabic_imgs/{image_path.name}", quality=85)
+    img.save(f"src/step2/{image_path.name}", quality=85)
+
+
+def add_random_images(image_path: Path):
+    # main img
+    img = Image.open(image_path)
+    img_w, img_h = img.size
+
+    # random images
+    dir_path = Path("src/utils/image_creation/sample_images")
+    files = list(dir_path.glob("*"))
+
+    for i in range(20):
+        # thing to put on top
+        random_overlay_file = random.choice(
+            files
+        )  # Choose a random file for the overlay
+        overlay = Image.open(random_overlay_file)
+        overlay = overlay.resize((random.randint(109, 300), random.randint(100, 300)))
+        overlay_w, overlay_h = overlay.size
+
+        overlay.putalpha(random.randint(50, 150))
+
+        offset = (
+            (img_w - overlay_w + random.randint(-1000, 1000)) // 2,
+            (img_h - overlay_h + random.randint(-1000, 1000)) // 2,
+        )
+        img.paste(overlay, offset, overlay)
+
+    img.save(f"src/step3/{image_path.name}", quality=85)
 
 
 if __name__ == "__main__":

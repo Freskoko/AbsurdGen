@@ -5,7 +5,17 @@ from loguru import logger
 
 from utils.image_creation.cutetext import grab_arabic_text, grab_cute_text
 from utils.image_creation.img_grab import grab_cute_img, save_url
-from utils.image_creation.text_on_img import add_random_text, add_txt_to_image
+from utils.image_creation.text_on_img import (
+    add_random_images,
+    add_random_text,
+    add_txt_to_image,
+)
+
+
+def treat_files_in_dir(directory: Path, func: callable, **kwargs):
+    for filename in os.listdir(directory):
+        fpath = Path(os.path.join(directory, filename))
+        func(fpath, **kwargs)
 
 
 def image_creator(iterations: int):
@@ -18,15 +28,17 @@ def image_creator(iterations: int):
     # directory = "src/received_imgs"
     # for filename in os.listdir(directory):
     #     fpath = Path(os.path.join(directory, filename))
+    #     add_txt_to_image(fpath)
 
-    #     cute_txt = grab_cute_text()
-    #     add_txt_to_image(fpath, cute_txt)
+    # directory = "src/step1"
+    # for filename in os.listdir(directory):
+    #     fpath = Path(os.path.join(directory, filename))
+    #     add_random_text(fpath, grab_arabic_text)
 
-    directory = "src/finished_imgs"
+    directory = "src/step2"
     for filename in os.listdir(directory):
         fpath = Path(os.path.join(directory, filename))
-
-        add_random_text(fpath, grab_arabic_text)
+        add_random_images(fpath)
 
     logger.success(f"Added text to all images")
 
