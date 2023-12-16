@@ -3,7 +3,7 @@ from pathlib import Path
 
 from loguru import logger
 
-from utils.image_creation.cutetext import grab_arabic_text, grab_cute_text
+from utils.image_creation.cutetext import grab_arabic_text
 from utils.image_creation.img_grab import grab_cute_img, save_url
 from utils.image_creation.text_on_img import (
     add_random_images,
@@ -19,28 +19,21 @@ def treat_files_in_dir(directory: Path, func: callable, **kwargs):
 
 
 def image_creator(iterations: int):
-    # for _ in range(iterations):
-    #     url = grab_cute_img()
-    #     save_url(url)
+    for _ in range(iterations):
+        url = grab_cute_img()
+        save_url(url)
 
-    # logger.info(f"Grabbed {iterations} images")
+    logger.info(f"Grabbed {iterations} images")
 
-    # directory = "src/received_imgs"
-    # for filename in os.listdir(directory):
-    #     fpath = Path(os.path.join(directory, filename))
-    #     add_txt_to_image(fpath)
+    treat_files_in_dir(directory="src/images/received_imgs", func=add_txt_to_image)
 
-    # directory = "src/step1"
-    # for filename in os.listdir(directory):
-    #     fpath = Path(os.path.join(directory, filename))
-    #     add_random_text(fpath, grab_arabic_text)
+    treat_files_in_dir(
+        directory="src/images/step1", func=add_random_text, text_func=grab_arabic_text
+    )
 
-    directory = "src/step2"
-    for filename in os.listdir(directory):
-        fpath = Path(os.path.join(directory, filename))
-        add_random_images(fpath)
+    treat_files_in_dir(directory="src/images/step2", func=add_random_images)
 
-    logger.success(f"Added text to all images")
+    logger.success(f"Completed image process")
 
 
 if __name__ == "__main__":

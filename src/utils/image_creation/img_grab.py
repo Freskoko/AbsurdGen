@@ -34,7 +34,7 @@ def save_url(url: str):
     response = requests.get(url)
 
     if response.status_code == 200:
-        with open(f"src/received_imgs/output_{random_str(5)}.jpg", "wb") as f:
+        with open(f"src/images/received_imgs/output_{random_str(5)}.jpg", "wb") as f:
             f.write(response.content)
         logger.info("Saved image")
     else:
