@@ -4,6 +4,8 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
+from utils.image_creation.cutetext import grab_arabic_text
+
 
 def grab_random_colour():
     return random.choice(
@@ -51,6 +53,40 @@ def add_txt_to_image(image_path: Path, text: str):
         )
 
     img.save(f"src/finished_imgs/{image_path.name}", quality=85)
+
+
+def add_random_text(image_path: Path, text_func: callable):
+
+    # todo get colour random
+    img = Image.open(str(image_path))
+    draw = ImageDraw.Draw(img)
+
+    # todo get this right
+
+    for i in range(10):
+        text = text_func(30)
+        para = textwrap.wrap(text, width=random.randint(15, 50))
+        font = ImageFont.truetype(
+            "src/utils/fonts/FontsFree-Net-Vazir-Regular.ttf", random.randint(25, 80)
+        )
+        current_h, pad = (random.randint(-100, 2000)), random.randint(50, 300)
+        width = img.width - random.randint(-1000, 1000)
+        for line in para:
+
+            random_colour = grab_random_colour()
+            current_h = current_h + pad
+            # print(f"{current_h} {line}")
+            draw.text(
+                (width / 2, current_h / 2),
+                line,
+                font=font,
+                anchor="mm",
+                fill=random_colour,
+                stroke_width=random.randint(0, 10),
+                stroke_fill="black",
+            )
+
+    img.save(f"src/arabic_imgs/{image_path.name}", quality=85)
 
 
 if __name__ == "__main__":

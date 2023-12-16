@@ -1,3 +1,5 @@
+import random
+
 from loguru import logger
 from openai import OpenAI
 
@@ -23,6 +25,11 @@ def grab_cute_text():
     if out is None:
         logger.error("NO TEXT GRABBED")
     return out
+
+
+def grab_arabic_text(n: int) -> str:
+    arabic_text = "طبیعت زیبای دوست داشتنی"
+    return "".join(random.choice(arabic_text) for _ in range(n))
 
 
 if __name__ == "__main__":
