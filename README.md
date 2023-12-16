@@ -4,7 +4,7 @@
 
 Make your own .env and write
 
-``export OPENAI_API_KEY={YOUR KEY HERE}`
+`export OPENAI_API_KEY={YOUR KEY HERE}`
 
 ### TODO:
 
