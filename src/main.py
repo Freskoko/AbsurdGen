@@ -1,12 +1,12 @@
-import glob
 import os
 from pathlib import Path
 
 from loguru import logger
 
-from utils.cutetext import grab_cute_text
-from utils.img_grab import grab_cute_img, save_url
-from utils.text_on_img import add_txt_to_image
+from src.utils.image_creation.cutetext import grab_cute_text
+from src.utils.image_creation.img_grab import grab_cute_img, save_url
+from src.utils.image_creation.text_on_img import add_txt_to_image
+
 
 def image_creator(iterations: int):
     for _ in range(iterations):

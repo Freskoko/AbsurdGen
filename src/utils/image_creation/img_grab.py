@@ -1,9 +1,9 @@
 import base64
 import random
 import string
-from loguru import logger
 
 import requests
+from loguru import logger
 from openai import OpenAI
 
 client = OpenAI()
