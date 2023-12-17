@@ -6,6 +6,7 @@ from pathlib import Path
 import cv2
 import moviepy.video.io.ImageSequenceClip
 import numpy as np
+from moviepy.editor import AudioFileClip, VideoFileClip
 from natsort import natsorted
 from PIL import Image, ImageDraw, ImageEnhance, ImageFont
 
@@ -83,12 +84,23 @@ def img_to_video(image_folder: Path):
     )
 
     clip = moviepy.video.io.ImageSequenceClip.ImageSequenceClip(image_files, fps=fps)
-    clip.write_videofile("src/images/movie.mp4")
+    clip.write_videofile("src/images/temp.mp4")
 
     return
 
 
-# def add_sound
+def add_sound_to_mp4(video_location: Path, music_location: Path):
+    # Load video and audio
+    video = VideoFileClip(str(video_location))
+    audio = AudioFileClip(str(music_location))
+
+    # Add audio to the video
+    final_video = video.set_audio(audio)
+
+    # Write the result to a file. ".set_duration(video.duration)" ensures that audio will not run beyond video length.
+    final_video.set_duration(video.duration).write_videofile("src/images/movie.mp4")
+
+    return
 
 
 if __name__ == "__main__":
@@ -96,6 +108,10 @@ if __name__ == "__main__":
     img_to_many(fpath)
     fpath = Path("src/images/many_images")
     img_to_video(fpath)
+
+    vpath = Path("src/images/temp.mp4")
+    apath = Path("src/utils/image_creation/sample_sound/epic.mp3")
+    add_sound_to_mp4(vpath, apath)
 
 
 # if __name__ == "__main__":
