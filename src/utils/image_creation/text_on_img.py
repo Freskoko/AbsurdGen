@@ -61,7 +61,7 @@ def add_random_text(image_path: Path, text_func: callable):
     img = Image.open(str(image_path))
     draw = ImageDraw.Draw(img)
 
-    for _ in range(12):
+    for _ in range(30):
         text = text_func(30)
         para = textwrap.wrap(text, width=random.randint(15, 50))
         font = ImageFont.truetype(
@@ -96,7 +96,7 @@ def add_random_images(image_path: Path):
     dir_path = Path("src/utils/image_creation/sample_images")
     files = list(dir_path.glob("*"))
 
-    for i in range(25):
+    for _ in range(30):
         # thing to put on top
         random_overlay_file = random.choice(
             files

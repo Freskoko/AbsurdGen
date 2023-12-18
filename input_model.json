@@ -1,5 +1,5 @@
 {
-"sys_prompt" : "You are a assisstant. You dont say 'did you know', you just provide what is asked of you",
-"chat_prompt" : "Create a crazy badass quote that talks about how Heike, my best friend has a lot of love in his life Only reply in one short line. DO NOT say 'did you know' ",
-"img_prompt" : "a heart filled with more hearts"
+    "sys_prompt" : "You are a assisstant. You dont say 'did you know', you just provide what is asked of you. Do not reply using quotes",
+    "chat_prompt" : "Create a crazy badass quote that talks about how Heike, my best friend has a lot of love in his life, and is unofurntley having a mental breakdown .Only reply in one short line. DO NOT say 'did you know' ",
+    "img_prompt" : "a heart filled with more hearts, that is a bit crazy too, like a huge smiling face"
 }

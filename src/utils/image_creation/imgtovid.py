@@ -1,4 +1,5 @@
 import os
+import random
 import re
 import shutil
 from pathlib import Path
@@ -93,14 +94,20 @@ def img_to_video(image_folder: Path):
 
 
 def add_sound_to_mp4(video_location: Path, music_location: Path):
-    # Load video and audio
     video = VideoFileClip(str(video_location))
     audio = AudioFileClip(str(music_location))
 
-    # Add audio to the video
-    final_video = video.set_audio(audio)
+    # calculate maximum start time
+    max_start_time = max(0, audio.duration - video.duration)
 
-    # Write the result to a file. ".set_duration(video.duration)" ensures that audio will not run beyond video length.
+    # calculate start time
+    start_time = random.uniform(0, max_start_time)
+
+    # cut audio file clip
+    cut_audio = audio.subclip(start_time, start_time + video.duration)
+
+    final_video = video.set_audio(cut_audio)
+
     rando = random_str(5)
     final_video.set_duration(video.duration).write_videofile(
         f"src/images/movies/movie_{rando}.mp4"

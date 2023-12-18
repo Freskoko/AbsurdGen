@@ -50,7 +50,7 @@ def image_creator(iterations: int):
         img_to_video("src/images/many_images")
 
         vpath = Path("src/images/movies/temp.mp4")
-        apath = Path("src/utils/image_creation/sample_sound/epic.mp3")
+        apath = Path("src/utils/image_creation/sample_sound/podcast.mp3")
         add_sound_to_mp4(vpath, apath)
 
     logger.success(f"Completed movie processing")
