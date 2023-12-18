@@ -1,3 +1,4 @@
+import json
 import os
 import random
 import re
@@ -11,6 +12,7 @@ from moviepy.editor import AudioFileClip, VideoFileClip
 from natsort import natsorted
 from PIL import Image, ImageDraw, ImageEnhance, ImageFont
 
+from utils.config import CONFIG
 from utils.image_creation.img_grab import random_str
 
 
@@ -48,10 +50,11 @@ def img_to_many(image_path: Path):
         enhancement_factor = i * 0.01  # go from 0-1
 
         enhancements = [
-            "Contrast",
             "Color",
             "Sharpness",
         ]
+        if CONFIG["contrast"] == "True":
+            enhancements.append("Contrast")
 
         image_enhanced = img
 

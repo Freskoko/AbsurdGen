@@ -4,22 +4,21 @@ import random
 from loguru import logger
 from openai import OpenAI
 
+from utils.config import CONFIG
+
 client = OpenAI()
 
 
 def grab_cute_text():
-
-    with open("input_model.json") as json_file:
-        data = json.load(json_file)
 
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {
                 "role": "system",
-                "content": data["sys_prompt"],
+                "content": CONFIG["sys_prompt"],
             },
-            {"role": "user", "content": data["chat_prompt"]},
+            {"role": "user", "content": CONFIG["chat_prompt"]},
         ],
     )
     out = completion.choices[0].message.content

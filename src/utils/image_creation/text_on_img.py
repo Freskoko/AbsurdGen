@@ -4,6 +4,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
+from utils.config import CONFIG
 from utils.image_creation.cutetext import grab_cute_text
 
 
@@ -61,7 +62,7 @@ def add_random_text(image_path: Path, text_func: callable):
     img = Image.open(str(image_path))
     draw = ImageDraw.Draw(img)
 
-    for _ in range(30):
+    for _ in range(CONFIG["arabic"]):
         text = text_func(30)
         para = textwrap.wrap(text, width=random.randint(15, 50))
         font = ImageFont.truetype(
@@ -96,7 +97,7 @@ def add_random_images(image_path: Path):
     dir_path = Path("src/utils/image_creation/sample_images")
     files = list(dir_path.glob("*"))
 
-    for _ in range(30):
+    for _ in range(CONFIG["other_imgs"]):
         # thing to put on top
         random_overlay_file = random.choice(
             files

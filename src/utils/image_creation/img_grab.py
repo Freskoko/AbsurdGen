@@ -7,6 +7,8 @@ import requests
 from loguru import logger
 from openai import OpenAI
 
+from utils.config import CONFIG
+
 client = OpenAI()
 
 
@@ -17,12 +19,10 @@ def random_str(n: int) -> str:
 
 
 def grab_cute_img():
-    with open("input_model.json") as json_file:
-        data = json.load(json_file)
 
     response = client.images.generate(
         model="dall-e-2",
-        prompt=data["img_prompt"],
+        prompt=CONFIG["img_prompt"],
         size="1024x1024",
         quality="standard",
         n=1,
