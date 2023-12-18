@@ -1,9 +1,9 @@
 {
     "sys_prompt" : "You are a assisstant. You dont say 'did you know', you just provide what is asked of you. Do not reply using quotes",
-    "chat_prompt" : "Create a crazy badass quote that talks about how Lars, my best friend is addicted to reoblox .Only reply in one short line. DO NOT say 'did you know' ",
-    "img_prompt" : "a cool dark skull, that is a bit crazy too, like a huge smiling face, like roblox",
+    "chat_prompt" : "Create a crazy badass quote that talks about how edgy super cool badass dark you are .Only reply in one short line. DO NOT say 'did you know' ",
+    "img_prompt" : "a cool dark skull, that is a bit crazy too, like a huge smiling face skull, yellow background",
     "contrast": "False",
-    "arabic":40,
-    "other_imgs":5
+    "arabic":15,
+    "other_imgs":25
 }
 

@@ -50,7 +50,7 @@ def add_txt_to_image(image_path: Path):
             font=font,
             anchor="mm",
             fill=random_colour,
-            stroke_width=3,
+            stroke_width=9,
             stroke_fill="black",
         )
 
