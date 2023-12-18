@@ -1,4 +1,5 @@
 import base64
+import json
 import random
 import string
 
@@ -16,13 +17,14 @@ def random_str(n: int) -> str:
 
 
 def grab_cute_img():
+    with open("input_model.json") as json_file:
+        data = json.load(json_file)
 
     response = client.images.generate(
         model="dall-e-2",
-        prompt="a skull with flames on a black background, really cool",
+        prompt=data["img_prompt"],
         size="1024x1024",
         quality="standard",
-        # size="1024x1024",
         n=1,
     )
 

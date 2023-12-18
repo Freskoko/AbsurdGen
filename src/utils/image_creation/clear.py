@@ -11,6 +11,7 @@ def clear_folders():
         "src/images/step1",
         "src/images/step2",
         "src/images/step3",
+        "src/images/many_images",
     ]
 
     for folder in folders:

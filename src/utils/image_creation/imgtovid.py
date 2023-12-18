@@ -10,6 +10,8 @@ from moviepy.editor import AudioFileClip, VideoFileClip
 from natsort import natsorted
 from PIL import Image, ImageDraw, ImageEnhance, ImageFont
 
+from utils.image_creation.img_grab import random_str
+
 
 def warp_perspective(img):
     rows, cols = img.shape[:2]
@@ -35,7 +37,8 @@ def warp_perspective(img):
 
 def img_to_many(image_path: Path):
 
-    shutil.rmtree("src/images/many_images")
+    shutil.rmtree("src/images/many_images", ignore_errors=True)
+
     (Path("src/images/many_images")).mkdir(parents=True, exist_ok=True)
     img = Image.open(image_path)
     img.save(f"src/images/many_images/0_{image_path.name}", quality=85)
@@ -57,7 +60,7 @@ def img_to_many(image_path: Path):
             image_enhanced = enhancer.enhance(enhancement_factor)
 
         # rotate
-        image_enhanced = image_enhanced.rotate((abs(i / 3)))
+        # image_enhanced = image_enhanced.rotate((abs(i / 3)))
 
         # warp
         img_numpy = np.array(image_enhanced)
@@ -84,7 +87,7 @@ def img_to_video(image_folder: Path):
     )
 
     clip = moviepy.video.io.ImageSequenceClip.ImageSequenceClip(image_files, fps=fps)
-    clip.write_videofile("src/images/temp.mp4")
+    clip.write_videofile("src/images/movies/temp.mp4")
 
     return
 
@@ -98,8 +101,12 @@ def add_sound_to_mp4(video_location: Path, music_location: Path):
     final_video = video.set_audio(audio)
 
     # Write the result to a file. ".set_duration(video.duration)" ensures that audio will not run beyond video length.
-    final_video.set_duration(video.duration).write_videofile("src/images/movie.mp4")
-
+    rando = random_str(5)
+    final_video.set_duration(video.duration).write_videofile(
+        f"src/images/movies/movie_{rando}.mp4"
+    )
+    shutil.rmtree("src/images/many_images", ignore_errors=True)
+    shutil.rmtree("src/images/movies/temp.mp4", ignore_errors=True)
     return
 
 
