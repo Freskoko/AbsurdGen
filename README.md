@@ -6,6 +6,8 @@ Edit prompts, and image/video stettings in `input_model.json`
 
 Example output:
 
+See `example/movie_N1X6E.mp4`
+
 <video width="320" height="240" controls>
   <source src="example/movie_N1X6E.mp4" type="video/mp4">
 </video>
